@@ -538,8 +538,8 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
         selectedSeason={selectedSeason}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        columns={columns}
-        onColumnsChange={updateColumns}
+        columns={columns as Record<string, boolean>}
+        onColumnsChange={updateColumns as (columns: Record<string, boolean>) => void}
         filteredCount={filteredPlayers.length}
         totalCount={data.players.length}
       />
