@@ -1,6 +1,6 @@
 # HussEyquation.com
 
-A comprehensive NBA player ranking website using the "HussEyquation" – a composite metric that averages each player's ranking across five advanced statistics: **PER**, **Win Shares (WS)**, **Win Shares per 48 minutes (WS/48)**, **Box Plus/Minus (BPM)**, and **Value Over Replacement Player (VORP)**.
+A comprehensive NBA player impact ranking website using the "HussEyquation" – a composite metric that averages each player's ranking across five advanced statistics: **PER**, **Win Shares (WS)**, **Win Shares per 48 minutes (WS/48)**, **Box Plus/Minus (BPM)**, and **Value Over Replacement Player (VORP)**.
 
 ## Architecture
 
