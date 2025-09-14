@@ -29,7 +29,10 @@
       "Bash(gh repo create:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(move main.py main_old.py)",
+      "Bash(move main_new.py main.py)"
     ],
     "deny": [],
     "ask": []
