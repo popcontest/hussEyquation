@@ -5,7 +5,7 @@ import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Hero } from './Hero'
 import { FilterBar } from './FilterBar'
-import { RankingsFilters, defaultFilters, NumericCondition } from '@/types/filters'
+import { RankingsFilters, defaultFilters, NumericCondition, Comparator } from '@/types/filters'
 import { evaluateNumeric } from '@/utils/predicate'
 import { useDensityPreference } from '@/hooks/useDensityPreference'
 
@@ -293,7 +293,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
   
   const fromQueryString = (sp: URLSearchParams): RankingsFilters => {
     const dec = (key: string): NumericCondition | undefined => {
-      const op = sp.get(`${key}_op`) as ComparisonOperator | null
+      const op = sp.get(`${key}_op`) as Comparator | null
       if (!op) return undefined
       const val  = sp.get(`${key}_val`)
       const val2 = sp.get(`${key}_val2`)
