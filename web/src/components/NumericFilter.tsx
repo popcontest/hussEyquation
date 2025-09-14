@@ -27,7 +27,7 @@ export function NumericFilter({ label, placeholder, step = 1, value, onChange, a
   const v2 = value?.value2 ?? '';
 
   function set<K extends keyof NumericCondition>(k: K, val: NumericCondition[K]) {
-    const base: NumericCondition = { op, value: v as any, value2: v2 as any };
+    const base: NumericCondition = { op, value: v as string | number, value2: v2 as string | number };
     const next = { ...base, [k]: val };
 
     // if numbers are empty, clear condition

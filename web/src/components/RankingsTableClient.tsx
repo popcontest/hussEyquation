@@ -100,7 +100,7 @@ interface RankingsResponse {
 }
 
 function TrendIndicator({ player }: { player: Player }) {
-  const { rank_change, trend_direction, previous_rank } = player
+  const { rank_change, trend_direction } = player
   
   if (trend_direction === 'NEW') {
     return (
@@ -146,7 +146,8 @@ function TrendCell({ trend7d, trend1d, trend14d }: { trend7d?: number; trend1d?:
   )
 }
 
-function ColumnPicker({ value, onChange }: {
+// Commented out unused component for now
+/* function ColumnPicker({ value, onChange }: {
   value: ColumnState
   onChange: (next: ColumnState) => void
 }) {
@@ -255,7 +256,7 @@ function ColumnPicker({ value, onChange }: {
       )}
     </div>
   )
-}
+} */
 
 interface RankingsTableClientProps {
   selectedSeason?: string
@@ -267,7 +268,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [columns, setColumns] = useState<ColumnState>(defaultColumns)
-  const { density, setDensity } = useDensityPreference('comfortable')
+  const { density } = useDensityPreference('comfortable')
   
   // URL sync utilities for filters
   const router = useRouter()
@@ -292,7 +293,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
   
   const fromQueryString = (sp: URLSearchParams): RankingsFilters => {
     const dec = (key: string): NumericCondition | undefined => {
-      const op = sp.get(`${key}_op`) as any
+      const op = sp.get(`${key}_op`) as ComparisonOperator | null
       if (!op) return undefined
       const val  = sp.get(`${key}_val`)
       const val2 = sp.get(`${key}_val2`)
@@ -496,7 +497,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
       
       // Numeric filters
       for (const [k, getValue] of Object.entries(fieldMap)) {
-        const cond = (filters as any)[k] as NumericCondition | undefined
+        const cond = (filters as Record<string, NumericCondition | undefined>)[k] as NumericCondition | undefined
         if (cond && !evaluateNumeric(getValue(player), cond)) return false
       }
       
@@ -556,7 +557,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
           <thead className="bg-gray-50">
             <tr>
               {columnOrder.filter(key => columns[key]).map((key, index) => {
-                const isSticky = key === 'rank' || key === 'player'
+                // const isSticky = key === 'rank' || key === 'player'
                 const isLeftAlign = key === 'rank' || key === 'player' || key === 'team' || key === 'pos'
                 const hasBorder = key === 'score' || key === 'gp'
                 const stickyClasses = key === 'rank' 
@@ -585,7 +586,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
             {filteredPlayers.map((player) => (
               <tr key={player.player_id} className="hover:bg-gray-25 border-b border-gray-100">
                 {columnOrder.filter(key => columns[key]).map((key) => {
-                  const isSticky = key === 'rank' || key === 'player'
+                  // const isSticky = key === 'rank' || key === 'player'
                   const isLeftAlign = key === 'rank' || key === 'player' || key === 'team' || key === 'pos'
                   const hasBorder = key === 'score' || key === 'gp'
                   const stickyClasses = key === 'rank' 

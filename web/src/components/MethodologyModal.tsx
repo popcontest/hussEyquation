@@ -41,7 +41,7 @@ export default function MethodologyModal() {
             
             <div className="space-y-4 text-gray-700">
               <p>
-                <strong>Score (lower is better):</strong> the average of a player's ranks across{' '}
+                <strong>Score (lower is better):</strong> the average of a player&apos;s ranks across{' '}
                 <em>PER, WS, WS/48, BPM, VORP</em> for the selected season.
               </p>
               

@@ -14,13 +14,13 @@ type Props = {
   onSeasonChange?: (season: string) => void;
   searchTerm: string;
   onSearchChange: (term: string) => void;
-  columns: any;
-  onColumnsChange: (columns: any) => void;
+  columns: Record<string, boolean>;
+  onColumnsChange: (columns: Record<string, boolean>) => void;
   filteredCount: number;
   totalCount: number;
 };
 
-function ColumnPicker({ value, onChange }: { value: any; onChange: (next: any) => void }) {
+function ColumnPicker({ value, onChange }: { value: Record<string, boolean>; onChange: (next: Record<string, boolean>) => void }) {
   const [isOpen, setIsOpen] = React.useState(false);
   
   // This is a simplified version - you can expand with full column picker logic

@@ -1,4 +1,4 @@
-import { Comparator, NumericCondition } from '@/types/filters';
+import { NumericCondition } from '@/types/filters';
 
 export function evaluateNumeric(value: number | undefined, cond?: NumericCondition): boolean {
   if (cond == null) return true;
