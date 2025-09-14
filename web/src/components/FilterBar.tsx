@@ -20,7 +20,7 @@ type Props = {
   totalCount: number;
 };
 
-function ColumnPicker({ value, onChange }: { value: Record<string, boolean>; onChange: (next: Record<string, boolean>) => void }) {
+function ColumnPicker({ value: _value, onChange: _onChange }: { value: Record<string, boolean>; onChange: (next: Record<string, boolean>) => void }) {
   const [isOpen, setIsOpen] = React.useState(false);
   
   // This is a simplified version - you can expand with full column picker logic

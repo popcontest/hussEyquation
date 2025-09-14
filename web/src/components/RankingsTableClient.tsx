@@ -556,7 +556,7 @@ export default function RankingsTableClient({ selectedSeason = '2025' }: Ranking
         <table className="min-w-full table-freeze-columns">
           <thead className="bg-gray-50">
             <tr>
-              {columnOrder.filter(key => columns[key]).map((key, index) => {
+              {columnOrder.filter(key => columns[key]).map((key) => {
                 // const isSticky = key === 'rank' || key === 'player'
                 const isLeftAlign = key === 'rank' || key === 'player' || key === 'team' || key === 'pos'
                 const hasBorder = key === 'score' || key === 'gp'
