@@ -40,6 +40,15 @@ def generate_etag(content: Any) -> str:
     content_str = json.dumps(content, sort_keys=True, default=str)
     return f'"{hashlib.md5(content_str.encode()).hexdigest()}"'
 
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for deployment monitoring"""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "service": "husseyquation-api"
+    }
+
 # Use existing database file instead of auto-generating
 import sqlite3
 from typing import Dict, Any
