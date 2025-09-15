@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Import database config
-from database_config import db_config
+# Import cached data (for production deployment reliability)
+from cached_data import get_cached_rankings
 
 app = FastAPI(
     title="HussEyquation API",
@@ -52,24 +52,18 @@ async def health_check():
         "service": "husseyquation-api"
     }
 
-# Import database configuration
-from database_config import db_config
-
-class DatabaseAdapter:
-    def __init__(self):
-        self.db_config = db_config
-    
+# Using cached data adapter for production reliability
+class CachedDataAdapter:
     def get_season_rankings(self, season: int, qualified: bool = True, limit: int = None, offset: int = 0) -> Dict[str, Any]:
-        # Use the new database configuration which supports both SQLite and PostgreSQL
-        result = self.db_config.get_season_rankings(season, qualified, limit, offset)
+        # Use cached data instead of database for reliability
+        result = get_cached_rankings(str(season), qualified, limit or 50, offset)
         
         # Add season name for backward compatibility
-        if "season_name" not in result:
-            result["season_name"] = f"{season-1}-{str(season)[2:]}"
-            
+        result["season_name"] = f"{season-1}-{str(season)[2:]}"
+        
         return result
 
-db = DatabaseAdapter()
+db = CachedDataAdapter()
 
 @app.get("/")
 async def root():
