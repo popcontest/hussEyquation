@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Import database config
+from database_config import db_config
+
 app = FastAPI(
     title="HussEyquation API",
     description="NBA Player Rankings using the HussEyquation composite metric",
@@ -18,7 +21,7 @@ app = FastAPI(
 )
 
 # CORS middleware for frontend
-cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:3003").split(",")
+cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:3003,https://husseyquation.vercel.app").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
@@ -199,6 +202,9 @@ async def get_all_time_leaderboards():
         content=response_data,
         headers={**CACHE_HEADERS, "ETag": etag}
     )
+
+# Vercel serverless function handler
+handler = app
 
 if __name__ == "__main__":
     import uvicorn
