@@ -33,7 +33,9 @@
       "Bash(git pull:*)",
       "Bash(move main.py main_old.py)",
       "Bash(move main_new.py main.py)",
-      "Bash(ipconfig)"
+      "Bash(ipconfig)",
+      "Bash(copy requirements.txt requirements-full.txt)",
+      "Bash(copy requirements-vercel.txt requirements.txt)"
     ],
     "deny": [],
     "ask": []
